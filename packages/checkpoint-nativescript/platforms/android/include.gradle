@@ -1,0 +1,17 @@
+// Checkpoint native core — the Capacitor-free Android engine (GeofenceStore +
+// receivers/services) plus the com.checkpoint.core.CheckpointGeofence shim this
+// plugin's TS layer drives directly. Published as dev.checkpoint:checkpoint-core
+// from packages/checkpoint-capacitor/android-core.
+//
+// PRE-PUBLISH (no Maven Central artifact yet): build it into mavenLocal first —
+//   cd packages/checkpoint-capacitor/android-core && ./gradlew publishToMavenLocal
+// — mavenLocal() below resolves it from ~/.m2.
+repositories {
+    mavenLocal()
+    google()
+    mavenCentral()
+}
+
+dependencies {
+    implementation 'dev.checkpoint:checkpoint-core:0.1.0'
+}

@@ -1,0 +1,81 @@
+{
+  "name": "@geoseal/react-native",
+  "version": "0.2.0",
+  "description": "Geoseal location / geofence / ingest SDK for React Native (iOS + Android). A thin bridge over the @geoseal/capacitor native cores; all detection logic runs server-side.",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "react-native": "src/index.ts",
+  "source": "src/index.ts",
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "react-native": "./src/index.ts",
+      "import": "./dist/index.js",
+      "default": "./dist/index.js"
+    },
+    "./geofence": {
+      "types": "./dist/geofence.d.ts",
+      "react-native": "./src/geofence.ts",
+      "import": "./dist/geofence.js",
+      "default": "./dist/geofence.js"
+    },
+    "./package.json": "./package.json"
+  },
+  "files": [
+    "dist/",
+    "src/",
+    "ios/",
+    "android/src/",
+    "android/build.gradle",
+    "CheckpointReactNative.podspec",
+    "react-native.config.js",
+    "README.md"
+  ],
+  "scripts": {
+    "build": "tsc -p tsconfig.json",
+    "typecheck": "tsc -p tsconfig.json --noEmit",
+    "typecheck:test": "tsc -p tsconfig.test.json",
+    "clean": "rm -rf dist",
+    "prepare": "npm run build",
+    "prepublishOnly": "npm run clean && npm run build"
+  },
+  "keywords": [
+    "react-native",
+    "geofence",
+    "location",
+    "background-location",
+    "geoseal",
+    "turbomodule"
+  ],
+  "license": "Apache-2.0",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/geoseal/sdks.git"
+  },
+  "homepage": "https://geoseal.dev",
+  "bugs": {
+    "url": "https://github.com/geoseal/sdks/issues"
+  },
+  "peerDependencies": {
+    "react": "*",
+    "react-native": ">=0.71.0"
+  },
+  "dependencies": {
+    "@geoseal/capacitor": "^0.2.0"
+  },
+  "devDependencies": {
+    "react-native": "0.76.0",
+    "typescript": "^5.8.3"
+  },
+  "codegenConfig": {
+    "name": "CheckpointGeofenceSpec",
+    "type": "modules",
+    "jsSrcsDir": "src",
+    "android": {
+      "javaPackageName": "com.checkpoint.reactnative"
+    }
+  },
+  "engines": {
+    "node": ">=20.19"
+  }
+}

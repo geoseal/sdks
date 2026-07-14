@@ -1,0 +1,14 @@
+# CheckpointCore's deployment target is iOS 14 (the NS default is lower; the NS
+# CLI merges plugin Podfiles and keeps the highest declared platform version).
+platform :ios, '14.0'
+
+# CheckpointCore — the Capacitor-free Checkpoint iOS engine (GeofenceManager +
+# the @objc(CheckpointGeofence) shim this plugin's TS layer drives directly).
+# Published from packages/checkpoint-capacitor (CheckpointCore.podspec).
+pod 'CheckpointCore', '~> 0.1'
+
+# The pod above resolves from the CocoaPods trunk (CDN). To pin a local
+# checkout instead (development), comment it and use a :path pod — NativeScript
+# merges this file into the app's Podfile, so the :path must resolve from
+# platforms/ios of the generated project or be absolute:
+# pod 'CheckpointCore', :path => '/path/to/checkpoint-irl/packages/checkpoint-capacitor'

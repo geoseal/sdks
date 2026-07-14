@@ -1,0 +1,89 @@
+// Android library module for @geoseal/react-native. Autolinked by React Native's
+// gradle plugin (settings-plugin scans node_modules for packages with this file).
+// It is a THIN binding over the @geoseal/capacitor Android core (Play Services
+// geofencing + foreground services + native OkHttp ingest).
+
+buildscript {
+    // Only needed when this module is opened as a standalone build; in an RN
+    // host the root project supplies AGP (and a duplicate classpath here could
+    // fight the host's AGP version).
+    if (project == rootProject) {
+        repositories {
+            google()
+            mavenCentral()
+        }
+        dependencies {
+            classpath 'com.android.tools.build:gradle:8.7.2'
+        }
+    }
+}
+
+def isNewArchitectureEnabled() {
+    return rootProject.hasProperty("newArchEnabled") && rootProject.getProperty("newArchEnabled") == "true"
+}
+
+apply plugin: 'com.android.library'
+// New Architecture: the host app's autolinking CMake does
+// add_subdirectory(<thisLib>/android/build/generated/source/codegen/jni) and
+// links react_codegen_CheckpointGeofenceSpec, so the react gradle plugin MUST
+// run here to generate those artifacts from src/NativeCheckpointGeofence.ts
+// (codegenConfig in package.json). On classic-arch hosts nothing references
+// the codegen output and the plugin is skipped (same pattern as
+// create-react-native-library templates).
+if (isNewArchitectureEnabled()) {
+    apply plugin: 'com.facebook.react'
+}
+
+def safeExtGet(prop, fallback) {
+    rootProject.ext.has(prop) ? rootProject.ext.get(prop) : fallback
+}
+
+android {
+    namespace "com.checkpoint.reactnative"
+    compileSdk safeExtGet('compileSdkVersion', 35)
+    defaultConfig {
+        minSdkVersion safeExtGet('minSdkVersion', 23)
+        targetSdkVersion safeExtGet('targetSdkVersion', 35)
+    }
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_17
+        targetCompatibility JavaVersion.VERSION_17
+    }
+    lintOptions {
+        abortOnError false
+    }
+}
+
+dependencies {
+    // React Native — provided by the host app. `+` resolves to the app's RN.
+    implementation "com.facebook.react:react-android:+"
+
+    // The Checkpoint Android core — the Capacitor-free engine AAR built from
+    // @geoseal/capacitor's android-core/ Gradle module (namespace
+    // com.checkpoint.core; engine classes keep FQCN com.checkpoint.capacitor.*).
+    //
+    // PRE-PUBLISH RESOLUTION: the coordinate is not on a public Maven repo yet,
+    // and Gradle resolves a library's dependencies against the HOST APP's
+    // repositories (a repositories{} block here would be ignored for the app's
+    // classpath). Until the AAR is published, the host does ONE of:
+    //
+    //  (a) publish to mavenLocal and expose it to the app build —
+    //      cd node_modules/@geoseal/capacitor/android-core && ./gradlew publishToMavenLocal
+    //      then in the HOST android/build.gradle:
+    //        allprojects {
+    //          repositories { mavenLocal { content { includeGroup "dev.checkpoint" } } }
+    //        }
+    //
+    //  (b) substitute the source build in the HOST settings.gradle:
+    //        includeBuild('../node_modules/@geoseal/capacitor/android-core') {
+    //          dependencySubstitution {
+    //            substitute module('dev.checkpoint:checkpoint-core') using project(':')
+    //          }
+    //        }
+    implementation "dev.checkpoint:checkpoint-core:0.1.0"
+
+    // Play Services Location is an `api` dep of the core AAR; declared here too so
+    // this module's own Geofence/GeofencingClient references compile against it.
+    implementation "com.google.android.gms:play-services-location:21.3.0"
+    implementation "androidx.core:core:1.13.1"
+}

@@ -1,0 +1,4 @@
+{
+  "comment": "Keeps everything under plugin/ (including the compiled build/) explicitly CommonJS. Expo loads config plugins via require() (CJS). The root package.json no longer sets \"type\": \"module\" (that ESM-poisoned app.plugin.js and broke the @expo/config-plugins resolver), so this marker is now belt-and-braces — it pins the plugin's format even if the root scope ever changes.",
+  "type": "commonjs"
+}

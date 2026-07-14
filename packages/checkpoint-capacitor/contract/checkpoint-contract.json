@@ -1,0 +1,98 @@
+{
+  "version": "0.2.0",
+  "source": "packages/checkpoint-capacitor/src/contract.ts (compile-pinned against definitions.ts + index.ts + api.ts)",
+  "nativeMethods": [
+    "configure",
+    "requestAlwaysAuthorization",
+    "requestNotificationAuthorization",
+    "requestBatteryExemption",
+    "openAppSettings",
+    "addFence",
+    "clearFences",
+    "setTrackingMode",
+    "getTrackingMode",
+    "getDiagnostics",
+    "addListener"
+  ],
+  "facadeMethods": [
+    "init",
+    "isConfigured",
+    "setTrackingMode",
+    "getTrackingMode",
+    "getTrackingDirective",
+    "setDeviceTrackingMode"
+  ],
+  "trackingModeWire": [
+    "geofence",
+    "always",
+    "off"
+  ],
+  "regionEventTypes": [
+    "enter",
+    "exit",
+    "update",
+    "stray_stream_stopped"
+  ],
+  "regionEventFields": [
+    "type",
+    "regionId",
+    "latitude",
+    "longitude",
+    "accuracy",
+    "timestamp"
+  ],
+  "nativeDiagnosticsFields": [
+    "authStatus",
+    "monitoredCount",
+    "monitoredIds",
+    "configured",
+    "subjectExternalId",
+    "baseUrl",
+    "fences",
+    "armedFenceCount",
+    "locationServicesEnabled",
+    "ignoringBatteryOptimizations",
+    "mode",
+    "streaming",
+    "lastStreamFixAt",
+    "streamNow",
+    "slcMonitoring",
+    "maxStrayStreamS",
+    "lastStrayStreamStopAt"
+  ],
+  "configureOptionKeys": [
+    "baseUrl",
+    "anonKey",
+    "publishableKey",
+    "subjectExternalId",
+    "deviceId",
+    "trackingMode",
+    "streamNow",
+    "minIntervalS",
+    "maxStrayStreamS"
+  ],
+  "directiveRpcKeys": [
+    "p_subject",
+    "p_app_id",
+    "p_device_ref"
+  ],
+  "outageReasons": [
+    "permission_revoked",
+    "permission_while_in_use_only",
+    "location_services_off",
+    "background_permission_denied",
+    "battery_saver_or_doze",
+    "force_quit_recovery",
+    "airplane_mode",
+    "connectivity_lost",
+    "gps_signal_lost",
+    "mock_location_detected",
+    "tracking_disabled_by_user",
+    "presence_inferred_stale"
+  ],
+  "ingestSources": [
+    "foreground_stream",
+    "native_region_wake",
+    "continuous_stream"
+  ]
+}

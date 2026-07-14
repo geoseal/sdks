@@ -1,0 +1,78 @@
+// Capacitor-free build face over the SAME engine sources as ../android (the
+// Capacitor plugin module). Produces checkpoint-core.aar: the engine classes
+// (com.checkpoint.capacitor.*, minus the Capacitor plugin shell) + the
+// com.checkpoint.core shim, with the shared library manifest's
+// receivers/services. Wrapper SDKs (RN/Flutter/MAUI) consume this AAR via
+// dev.checkpoint:checkpoint-core.
+
+buildscript {
+    repositories {
+        google()
+        mavenCentral()
+    }
+    dependencies {
+        classpath 'com.android.tools.build:gradle:8.7.2'
+    }
+}
+
+apply plugin: 'com.android.library'
+apply plugin: 'maven-publish'
+
+android {
+    namespace "com.checkpoint.core"
+    compileSdk 35
+    defaultConfig {
+        minSdkVersion 23
+        targetSdkVersion 35
+        versionCode 1
+        versionName "0.1.0"
+    }
+    sourceSets {
+        main {
+            java.srcDirs = ['../android/src/main/java']
+            // The Capacitor plugin shell is the ONLY Capacitor-dependent class;
+            // excluding it is what makes this face Capacitor-free.
+            java.exclude 'com/checkpoint/capacitor/NativeGeofencePlugin.java'
+            // ONE library manifest, shared with the Capacitor module — never copied.
+            manifest.srcFile '../android/src/main/AndroidManifest.xml'
+        }
+    }
+    lintOptions {
+        abortOnError false
+    }
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_17
+        targetCompatibility JavaVersion.VERSION_17
+    }
+    publishing {
+        singleVariant('release') {
+            withSourcesJar()
+        }
+    }
+}
+
+repositories {
+    google()
+    mavenCentral()
+}
+
+dependencies {
+    // api (not implementation) so AAR consumers resolve the engine's surface deps.
+    // Versions mirror ../android/build.gradle — keep in lockstep.
+    api "com.google.android.gms:play-services-location:21.3.0"
+    api "androidx.core:core:1.13.1"
+}
+
+afterEvaluate {
+    publishing {
+        publications {
+            release(MavenPublication) {
+                from components.release
+                groupId 'dev.checkpoint'
+                artifactId 'checkpoint-core'
+                // Must match packages/checkpoint-capacitor/package.json "version".
+                version '0.1.0'
+            }
+        }
+    }
+}

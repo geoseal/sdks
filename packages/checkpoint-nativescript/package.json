@@ -1,0 +1,66 @@
+{
+  "name": "@geoseal/nativescript",
+  "version": "0.2.0",
+  "description": "Geoseal location / geofence / ingest SDK for NativeScript (iOS + Android). The TS layer drives the Capacitor-free native cores (CheckpointCore pod / dev.checkpoint:checkpoint-core AAR) via the NativeScript runtime; all detection logic runs server-side.",
+  "main": "index",
+  "types": "index.d.ts",
+  "type": "module",
+  "nativescript": {
+    "platforms": {
+      "ios": "8.0.0",
+      "android": "8.0.0"
+    }
+  },
+  "files": [
+    "index.d.ts",
+    "index.ios.js",
+    "index.android.js",
+    "geofence.d.ts",
+    "geofence.ios.js",
+    "geofence.android.js",
+    "common.js",
+    "typings/",
+    "platforms/",
+    "README.md",
+    "LICENSE"
+  ],
+  "scripts": {
+    "build": "tsc -p tsconfig.json",
+    "typecheck": "tsc -p tsconfig.json --noEmit",
+    "typecheck:test": "tsc -p tsconfig.test.json --noEmit",
+    "test": "tsc -p tsconfig.test.json && node --test test/conformance.spec.js",
+    "clean": "rm -f index.ios.js index.android.js geofence.ios.js geofence.android.js common.js test/conformance.spec.js",
+    "prepare": "npm run build"
+  },
+  "keywords": [
+    "nativescript",
+    "geofence",
+    "location",
+    "background-location",
+    "geoseal"
+  ],
+  "license": "Apache-2.0",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/geoseal/sdks.git",
+    "directory": "packages/checkpoint-nativescript"
+  },
+  "homepage": "https://geoseal.dev",
+  "bugs": {
+    "url": "https://github.com/geoseal/sdks/issues"
+  },
+  "dependencies": {
+    "@geoseal/capacitor": "^0.2.0"
+  },
+  "peerDependencies": {
+    "@nativescript/core": ">=8.0.0"
+  },
+  "devDependencies": {
+    "@nativescript/core": "~9.0.20",
+    "@nativescript/types": "~9.0.0",
+    "typescript": "^5.8.3"
+  },
+  "engines": {
+    "node": ">=18"
+  }
+}

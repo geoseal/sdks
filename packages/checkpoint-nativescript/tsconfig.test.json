@@ -1,0 +1,18 @@
+{
+  "extends": "./tsconfig.json",
+  "compilerOptions": {
+    "noEmitOnError": true
+  },
+  "include": [
+    "common.ts",
+    "index.ios.ts",
+    "index.android.ts",
+    "geofence.ios.ts",
+    "geofence.android.ts",
+    "index.d.ts",
+    "geofence.d.ts",
+    "references.d.ts",
+    "typings/**/*.d.ts",
+    "test/**/*.ts"
+  ]
+}

@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Library manifest for @geoseal/react-native.
+     The receivers/services (GeofenceBroadcastReceiver, GeofencePostService,
+     ContinuousLocationService, BootReceiver) and the geofencing permissions are
+     declared by the CORE library manifest in @geoseal/capacitor's
+     android/src/main/AndroidManifest.xml. When this wrapper depends on the core
+     AAR (see build.gradle), the Android manifest-merger folds the core's
+     components into the host app's merged manifest automatically — we do NOT
+     re-declare them here, to avoid duplicate-component merge conflicts.
+
+     The permissions are re-declared here only so that an app that links this
+     wrapper but (during the unpublished-core window) vendors the core sources
+     rather than the AAR still gets the right uses-permission set merged. They are
+     identical to the core's and merge idempotently. -->
+<manifest xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+    <!-- Background geofence triggering when the app isn't running (API 29+). -->
+    <uses-permission android:name="android.permission.ACCESS_BACKGROUND_LOCATION" />
+    <!-- Crossing notifications (API 33+). -->
+    <uses-permission android:name="android.permission.POST_NOTIFICATIONS" />
+    <!-- Short-lived foreground service to complete the POST after a cold wake. -->
+    <uses-permission android:name="android.permission.FOREGROUND_SERVICE" />
+    <uses-permission android:name="android.permission.FOREGROUND_SERVICE_LOCATION" />
+    <!-- Re-arm geofences after device reboot. -->
+    <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED" />
+    <!-- Ask to be exempted from battery optimization (Doze / OEM app-standby). -->
+    <uses-permission android:name="android.permission.REQUEST_IGNORE_BATTERY_OPTIMIZATIONS" />
+
+</manifest>

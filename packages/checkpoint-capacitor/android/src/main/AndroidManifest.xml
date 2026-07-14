@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Library manifest for @geoseal/capacitor. The Android manifest-merger folds
+     these receivers / services / permissions into the host app's merged manifest
+     (docs/sdk-extraction-plan.md Phase D step 14). Names are FULLY-QUALIFIED
+     (com.checkpoint.capacitor.*) because they now live in the library package, not
+     the host app package. -->
+<manifest xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <!-- Permissions (moved out of the host app manifest; merger re-adds them). -->
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+    <!-- Background geofence triggering when the app isn't running (API 29+). -->
+    <uses-permission android:name="android.permission.ACCESS_BACKGROUND_LOCATION" />
+    <!-- Crossing notifications (API 33+). -->
+    <uses-permission android:name="android.permission.POST_NOTIFICATIONS" />
+    <!-- Short-lived foreground service to complete the POST after a cold wake. -->
+    <uses-permission android:name="android.permission.FOREGROUND_SERVICE" />
+    <uses-permission android:name="android.permission.FOREGROUND_SERVICE_LOCATION" />
+    <!-- Re-arm geofences after device reboot. -->
+    <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED" />
+    <!-- Ask to be exempted from battery optimization (Doze / OEM app-standby).
+         On Samsung One UI an optimized app is force-stopped in the background and
+         its receivers disabled, so Play Services geofence broadcasts never reach a
+         killed process. -->
+    <uses-permission android:name="android.permission.REQUEST_IGNORE_BATTERY_OPTIMIZATIONS" />
+
+    <application>
+
+        <!-- Wake-on-geofence receiver: the system delivers transitions here even
+             when the app process is killed. Not exported — only Play Services
+             (via our own PendingIntent) and the system trigger it. -->
+        <receiver
+            android:name="com.checkpoint.capacitor.GeofenceBroadcastReceiver"
+            android:exported="false" />
+
+        <!-- Short-lived foreground service that performs the network POST after a
+             geofence broadcast. A cold-started process can be killed the moment
+             onReceive() returns (goAsync's grace window is not guaranteed across
+             process death); promoting to a foreground service for the duration of
+             the POST is the supported way to guarantee it completes. -->
+        <service
+            android:name="com.checkpoint.capacitor.GeofencePostService"
+            android:exported="false"
+            android:foregroundServiceType="location" />
+
+        <!-- Long-running foreground service that STREAMS fine location fixes while
+             it matters (in-perimeter for geofence mode, in-shift for always mode)
+             and POSTs each with source:"continuous_stream". This is the "wake and
+             stream" fix (tracking-modes §3/§4): holding requestLocationUpdates in a
+             foreground service keeps the process alive so the engine gets the 3
+             consecutive in-ring fixes it needs AND exit is detected from the stream
+             rather than a single Doze/OEM-droppable broadcast. type=location is
+             mandatory + enforced for a background location FGS on API 34+. -->
+        <service
+            android:name="com.checkpoint.capacitor.ContinuousLocationService"
+            android:exported="false"
+            android:foregroundServiceType="location" />
+
+        <!-- Re-register geofences after a reboot. Play Services drops all
+             registered geofences on reboot, so we re-arm from persisted geometry
+             (the Android analogue of iOS region monitoring surviving a relaunch). -->
+        <receiver
+            android:name="com.checkpoint.capacitor.BootReceiver"
+            android:exported="true"
+            android:directBootAware="true">
+            <intent-filter>
+                <action android:name="android.intent.action.BOOT_COMPLETED" />
+                <action android:name="android.intent.action.LOCKED_BOOT_COMPLETED" />
+                <action android:name="android.intent.action.MY_PACKAGE_REPLACED" />
+            </intent-filter>
+        </receiver>
+    </application>
+</manifest>

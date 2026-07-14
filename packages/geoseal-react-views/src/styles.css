@@ -1,0 +1,58 @@
+/*
+ * @geoseal/react-views — animation + motion styles.
+ *
+ * All layout and color live in inline style objects (bundler-agnostic, no CSS
+ * loader required). This file holds only what inline styles cannot express:
+ * keyframes and the prefers-reduced-motion opt-out. GeosealVisit injects these
+ * exact rules into <head> once at mount, so importing this file is OPTIONAL —
+ * it is provided for consumers who prefer a real stylesheet
+ * (`import "@geoseal/react-views/styles.css"`).
+ */
+
+@keyframes gsv-spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes gsv-ping {
+  0% {
+    transform: scale(0.6);
+    opacity: 0.7;
+  }
+  80%,
+  100% {
+    transform: scale(2.4);
+    opacity: 0;
+  }
+}
+
+@keyframes gsv-blink {
+  0%,
+  100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.35;
+  }
+}
+
+.gsv-spin {
+  animation: gsv-spin 0.9s linear infinite;
+}
+
+.gsv-ping {
+  animation: gsv-ping 2s cubic-bezier(0, 0, 0.2, 1) infinite;
+}
+
+.gsv-blink {
+  animation: gsv-blink 1.6s ease-in-out infinite;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .gsv-spin,
+  .gsv-ping,
+  .gsv-blink {
+    animation: none !important;
+  }
+}

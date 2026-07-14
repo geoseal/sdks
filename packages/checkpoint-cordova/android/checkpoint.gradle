@@ -1,0 +1,15 @@
+// Gradle extension applied to the Cordova app project by the
+// checkpoint-cordova-plugin <framework type="gradleReference"> entry.
+//
+// PRE-PUBLISH ONLY: dev.checkpoint:checkpoint-core:0.1.0 is not on a public
+// Maven registry yet, so resolution comes from mavenLocal (~/.m2). Produce it
+// once per machine from the monorepo:
+//
+//   cd packages/checkpoint-capacitor/android-core && ./gradlew publishToMavenLocal
+//
+// Once the coordinate is published to Maven Central / GitHub Packages, delete
+// this repositories block (the plugin.xml <framework> dependency resolves from
+// the standard repos on its own).
+repositories {
+    mavenLocal()
+}

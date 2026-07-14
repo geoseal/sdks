@@ -1,0 +1,54 @@
+{
+  "name": "@geoseal/cordova",
+  "version": "0.2.0",
+  "description": "Geoseal location / geofence / ingest SDK for Apache Cordova (iOS + Android). A thin bridge over the @geoseal/capacitor native cores; all detection logic runs server-side.",
+  "main": "www/checkpoint.js",
+  "types": "src/index.ts",
+  "cordova": {
+    "id": "checkpoint-cordova-plugin",
+    "platforms": [
+      "ios",
+      "android"
+    ]
+  },
+  "files": [
+    "plugin.xml",
+    "www/",
+    "src/",
+    "ios/",
+    "android/",
+    "README.md"
+  ],
+  "scripts": {
+    "bundle": "node scripts/bundle.mjs",
+    "typecheck": "tsc -p tsconfig.json",
+    "typecheck:test": "tsc -p tsconfig.test.json",
+    "test": "node test/run-conformance.mjs",
+    "build": "npm run typecheck && npm run typecheck:test && npm run bundle"
+  },
+  "keywords": [
+    "cordova",
+    "ecosystem:cordova",
+    "cordova-ios",
+    "cordova-android",
+    "geofence",
+    "location",
+    "background-location",
+    "geoseal"
+  ],
+  "license": "Apache-2.0",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/geoseal/sdks.git",
+    "directory": "packages/checkpoint-cordova"
+  },
+  "devDependencies": {
+    "esbuild": "^0.25.0",
+    "typescript": "^5.8.3",
+    "@geoseal/capacitor": "file:../checkpoint-capacitor"
+  },
+  "engines": {
+    "node": ">=18"
+  },
+  "homepage": "https://geoseal.dev"
+}

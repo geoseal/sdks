@@ -1,0 +1,11 @@
+node_modules/
+package-lock.json
+# tsc output (compiled in place; shipped via package.json files[], which wins
+# over .gitignore at npm-pack time)
+/index.ios.js
+/index.android.js
+/geofence.ios.js
+/geofence.android.js
+/common.js
+/test/*.js
+*.tgz
