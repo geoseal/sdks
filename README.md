@@ -18,7 +18,7 @@ AI assistants can call directly.
 | [`@geoseal/nativescript`](https://www.npmjs.com/package/@geoseal/nativescript) | NativeScript | `npm i @geoseal/nativescript` |
 | [`@geoseal/react-views`](https://www.npmjs.com/package/@geoseal/react-views) | React (embeddable views) | `npm i @geoseal/react-views` |
 
-iOS native core: [`CheckpointCore` on CocoaPods](https://cocoapods.org/pods/CheckpointCore) (zero-config; the wire protocol keeps its original Checkpoint name for compatibility).
+iOS native core: `CheckpointCore` on CocoaPods — `pod 'CheckpointCore'` (zero-config; the wire protocol keeps its original Checkpoint name for compatibility).
 
 > `@checkpoint-irl/*` packages are the deprecated previous names of the same SDKs — use `@geoseal/*`.
 
