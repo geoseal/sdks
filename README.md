@@ -1,3 +1,5 @@
+<p align="center"><img src="https://raw.githubusercontent.com/geoseal/.github/main/brand/geoseal-mark.svg" width="140" alt="Geoseal"></p>
+
 # Geoseal SDKs
 
 Official mobile SDKs for [Geoseal](https://geoseal.dev) — verified presence as an API.
