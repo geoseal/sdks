@@ -1,6 +1,6 @@
 {
   "name": "@geoseal/capacitor",
-  "version": "0.2.0",
+  "version": "0.2.1",
   "description": "Geoseal location / geofence / ingest SDK for Capacitor (iOS + Android). The SDK is a sensor; all detection logic runs server-side.",
   "type": "module",
   "main": "dist/index.js",

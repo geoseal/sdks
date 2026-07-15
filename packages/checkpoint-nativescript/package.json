@@ -1,6 +1,6 @@
 {
   "name": "@geoseal/nativescript",
-  "version": "0.2.0",
+  "version": "0.2.1",
   "description": "Geoseal location / geofence / ingest SDK for NativeScript (iOS + Android). The TS layer drives the Capacitor-free native cores (CheckpointCore pod / dev.checkpoint:checkpoint-core AAR) via the NativeScript runtime; all detection logic runs server-side.",
   "main": "index",
   "types": "index.d.ts",

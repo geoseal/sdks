@@ -1,6 +1,6 @@
 {
   "name": "@geoseal/react-views",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "Embeddable React component that renders a live Geoseal shift + location view (map, geofence rings, worker track, event timeline, and AI closeout) from a single Geoseal Views embed token.",
   "private": false,
   "license": "Apache-2.0",

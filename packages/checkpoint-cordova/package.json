@@ -1,6 +1,6 @@
 {
   "name": "@geoseal/cordova",
-  "version": "0.2.0",
+  "version": "0.2.1",
   "description": "Geoseal location / geofence / ingest SDK for Apache Cordova (iOS + Android). A thin bridge over the @geoseal/capacitor native cores; all detection logic runs server-side.",
   "main": "www/checkpoint.js",
   "types": "src/index.ts",

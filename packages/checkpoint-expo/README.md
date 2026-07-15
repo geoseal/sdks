@@ -1,3 +1,5 @@
+<p align="center"><img src="https://raw.githubusercontent.com/geoseal/.github/main/brand/geoseal-mark.svg" width="140" alt="Geoseal — verified presence"></p>
+
 # @geoseal/expo
 
 Geoseal location / geofence / ingest SDK for **Expo (SDK 51+)**.
@@ -8,7 +10,7 @@ This package is intentionally **thin**. It is exactly two things:
    managed/prebuild flow otherwise hides (iOS `Info.plist` usage strings +
    `UIBackgroundModes`, Android background-location permission + foreground-service
    declarations).
-2. A **re-export of [`@geoseal/react-native`](../checkpoint-react-native)** — so
+2. A **re-export of [`@geoseal/react-native`](https://www.npmjs.com/package/@geoseal/react-native)** — so
    the JS API under `@geoseal/expo` is **byte-identical** to the React Native
    wrapper. The RN wrapper is itself a thin bridge over the two native cores. There
    is no Expo-specific JS and no duplicated geofencing logic.
@@ -45,8 +47,8 @@ This package is intentionally **thin**. It is exactly two things:
 ## Install
 
 > **Status — live on npm.** `@geoseal/expo`, its peer
-> [`@geoseal/react-native`](../checkpoint-react-native), and the core
-> [`@geoseal/capacitor`](../checkpoint-capacitor) are published npm
+> [`@geoseal/react-native`](https://www.npmjs.com/package/@geoseal/react-native), and the core
+> [`@geoseal/capacitor`](https://www.npmjs.com/package/@geoseal/capacitor) are published npm
 > packages; the iOS `CheckpointCore` pod resolves from the CocoaPods trunk. Only
 > the Android `dev.checkpoint:checkpoint-core` AAR is still pending a public
 > Maven registry (the plugin's mavenLocal vendoring covers it, below).

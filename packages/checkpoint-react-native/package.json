@@ -1,6 +1,6 @@
 {
   "name": "@geoseal/react-native",
-  "version": "0.2.0",
+  "version": "0.2.1",
   "description": "Geoseal location / geofence / ingest SDK for React Native (iOS + Android). A thin bridge over the @geoseal/capacitor native cores; all detection logic runs server-side.",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",

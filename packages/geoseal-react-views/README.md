@@ -1,3 +1,5 @@
+<p align="center"><img src="https://raw.githubusercontent.com/geoseal/.github/main/brand/geoseal-mark.svg" width="140" alt="Geoseal — verified presence"></p>
+
 # @geoseal/react-views
 
 Drop-in React component for a **live Geoseal shift + location view** — a Mapbox
@@ -5,8 +7,8 @@ map with the facility's two geofence rings, the worker's location track, a
 verified-presence event timeline, and the AI closeout summary — rendered from a
 single [Geoseal Views](https://geoseal.dev) embed token.
 
-This is Geoseal's answer to HyperTrack's `hypertrack-views-react` `LiveView`,
-built on Geoseal's signed, single-visit, de-identified embed tokens.
+It is a live-view component built on Geoseal's signed, single-visit,
+de-identified embed tokens.
 
 > **New — v0.1.0.** This package is brand new. It renders the payload from the
 > live `v1-embed` backend and depends on a **Geoseal Views embed token**

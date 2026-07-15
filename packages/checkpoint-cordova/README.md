@@ -1,3 +1,5 @@
+<p align="center"><img src="https://raw.githubusercontent.com/geoseal/.github/main/brand/geoseal-mark.svg" width="140" alt="Geoseal — verified presence"></p>
+
 # @geoseal/cordova
 
 Geoseal location / geofence / ingest SDK for Apache Cordova (iOS + Android).

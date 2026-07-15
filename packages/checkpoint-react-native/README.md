@@ -1,3 +1,5 @@
+<p align="center"><img src="https://raw.githubusercontent.com/geoseal/.github/main/brand/geoseal-mark.svg" width="140" alt="Geoseal — verified presence"></p>
+
 # @geoseal/react-native
 
 A **thin** React Native bridge over the two device-verified Geoseal native
@@ -5,7 +7,8 @@ cores (`@geoseal/capacitor`'s iOS `GeofenceManager` + Android Play Services /
 foreground-service layer). It re-implements **no** geofencing logic — that's
 server-side. The wrapper's only jobs are (a) expose the native API in JS/TS and
 (b) wire the platform permissions / background modes / manifest entries the cores
-require. This mirrors how HyperTrack ships its RN SDK over its native cores.
+require. This mirrors the standard pattern of shipping an RN SDK as a thin
+layer over device-verified native cores.
 
 ```
 JS  →  Checkpoint.init({ publishableKey })
@@ -241,7 +244,7 @@ covered either way.
 **Expo hosts are the exception:** Expo's own autolinking ignores
 `react-native.config.cjs` and still requires an
 `expo.autolinking.exclude` entry for `@geoseal/capacitor` — see the
-[`@geoseal/expo` README](../checkpoint-expo/README.md) (the config plugin
+[`@geoseal/expo` README](https://www.npmjs.com/package/@geoseal/expo) (the config plugin
 docs cover it).
 
 ### Core access control — resolved
