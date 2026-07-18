@@ -20,7 +20,7 @@ AI assistants can call directly.
 | [`@geoseal/nativescript`](https://www.npmjs.com/package/@geoseal/nativescript) | NativeScript | `npm i @geoseal/nativescript` |
 | [`@geoseal/react-views`](https://www.npmjs.com/package/@geoseal/react-views) | React (embeddable views) | `npm i @geoseal/react-views` |
 
-iOS native core: `CheckpointCore` on CocoaPods — `pod 'CheckpointCore'` (zero-config; the wire protocol keeps its original Checkpoint name for compatibility).
+iOS native core: `GeosealCore` — install `pod 'CheckpointCore'` today (the CocoaPods trunk still serves the legacy name; the renamed `GeosealCore` pod ships with the next native release). Also built + verified, registry publishes pending: `geoseal_flutter` (pub.dev), `GeoSeal.Maui` (NuGet), `dev.geoseal:geoseal-kmp` (Maven).
 
 > `@checkpoint-irl/*` packages are the deprecated previous names of the same SDKs — use `@geoseal/*`.
 
